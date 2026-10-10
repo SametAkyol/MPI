@@ -90,3 +90,8 @@ Mevcut donanım platformu, firmware geliştirme, sistem entegrasyonu ve uygulama
 **MPI — Multi-Protocol Interface**
 
 *Tek kart. Çoklu haberleşme arayüzü.*
+
+
+
+
+<img width="880" height="755" alt="MPI3D" src="https://github.com/user-attachments/assets/0bf7377d-1074-453d-920f-20eb54f3fb52" />
