@@ -93,5 +93,5 @@ Mevcut donanım platformu, firmware geliştirme, sistem entegrasyonu ve uygulama
 
 
 
+<img width="4847" height="3275" alt="PCB" src="https://github.com/user-attachments/assets/688c323e-c201-444d-af2e-180ad89e1214" />
 
-<img width="880" height="755" alt="MPI3D" src="https://github.com/user-attachments/assets/0bf7377d-1074-453d-920f-20eb54f3fb52" />
