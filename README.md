@@ -19,7 +19,7 @@ MPI'nin temel donanım bileşenleri ve işlevleri aşağıda verilmiştir.
 
 Bu bileşenler, farklı haberleşme arayüzlerinin merkezi bir mikrodenetleyici üzerinden yönetilmesini sağlayan donanım altyapısını oluşturur.
 
-## 2. Haberleşme Arayüzleri
+##  Haberleşme Arayüzleri
 
 MPI, farklı haberleşme ihtiyaçlarını tek kart üzerinden karşılamak üzere beş temel arayüz sunar.
 
@@ -33,42 +33,11 @@ MPI, farklı haberleşme ihtiyaçlarını tek kart üzerinden karşılamak üzer
 
 Arayüzlerin çalışma modları, veri hızları ve desteklenen protokoller ilgili donanım yapılandırmasına ve firmware uygulamasına bağlıdır.
 
-## 3. Donanım Mimarisi
-
-### 3.1. Ana Kontrol Birimi
-
-STM32F407VET6, MPI kartının merkezi işlem birimidir. Haberleşme çevre birimlerini yönetir, verileri işler ve farklı arayüzler arasındaki iletişim için gerekli kontrol işlevlerini yürütür.
-
-### 3.2. Ethernet Alt Sistemi
-
-DP83825 Ethernet PHY, mikrodenetleyici ile Ethernet fiziksel bağlantısı arasındaki katmanı sağlar. Bu alt sistem, kartın Ethernet ağı üzerinden harici cihazlarla iletişim kurmasına olanak tanır.
-
-### 3.3. RF Alt Sistemi
-
-Kablosuz haberleşme alt sistemi, CC1101 RF alıcı-vericisi ve CC1190 RF ön ucundan oluşur.
-
-- **CC1101:** Desteklenen Sub-GHz frekans bantlarında RF sinyallerinin gönderilmesini ve alınmasını sağlar.
-- **CC1190:** RF verici çıkış gücünü artırır ve alıcı tarafındaki RF performansını iyileştirmeye yönelik işlevler sunar.
-
-RF çalışma frekansı, modülasyon, veri hızı ve RF performansı kullanılan yapılandırmaya bağlıdır.
-
-### 3.4. CAN Arayüzü
-
-CAN arayüzü, CAN veri yolu kullanan gömülü kontrol sistemleri ve dağıtık elektronik sistemlerle haberleşmek üzere tasarlanmıştır.
-
-### 3.5. RS485 Arayüzü
-
-RS485 arayüzü, diferansiyel seri haberleşme altyapısı üzerinden endüstriyel cihazlar ve gömülü sistemlerle iletişim kurulmasını sağlar.
-
-### 3.6. USB Arayüzü
-
-USB arayüzü, kartın uyumlu bir bilgisayara veya USB cihazına bağlanmasını sağlar. Desteklenen çalışma modu ve işlevler firmware uygulamasına bağlıdır.
-
-## 4. PCB Tasarımı
+## PCB Tasarımı
 
 MPI kartı, **1,6 mm kalınlığında ve dört katmanlı bir PCB** olarak tasarlanmıştır. Katman yapısı, sinyal yönlendirmesi ve güç dağıtımı için uygun bir yerleşim altyapısı oluşturacak şekilde düzenlenmiştir.
 
-### 4.1. PCB Katman Yapısı
+### PCB Katman Yapısı
 
 Katman dizilimi aşağıdaki şekildedir:
 
@@ -85,7 +54,7 @@ Katman dizilimi aşağıdaki şekildedir:
   <img src="https://github.com/user-attachments/assets/d37de3f2-e5bc-418b-8b68-0fac166a13bc" alt="MPI dört katmanlı PCB katman dizilimi" width="85%"/>
 </p>
 
-### 4.2. PCB Yerleşimi
+### PCB Yerleşimi
 
 Kartın üst ve alt katman yerleşimleri aşağıda gösterilmiştir.
 
@@ -126,7 +95,7 @@ Kart; birden fazla kablolu ve kablosuz haberleşme arayüzünü aynı PCB üzeri
 
 Ölçülmüş performans değerleri, test koşulları ve arayüz bazındaki doğrulama sonuçları ilgili teknik dokümantasyon kapsamında sunulabilir.
 
-## 6. Kullanım Alanları
+##  Kullanım Alanları
 
 MPI aşağıdaki uygulamalarda değerlendirilebilir:
 
