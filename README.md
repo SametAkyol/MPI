@@ -91,12 +91,37 @@ Mevcut donanım platformu, firmware geliştirme, sistem entegrasyonu ve uygulama
 
 *Tek kart. Çoklu haberleşme arayüzü.*
 
+3. PCB Tasarımı
+
+MPI kartının PCB tasarımı, üst ve alt katman yerleşimleri ile üç boyutlu kart modeli aşağıda gösterilmiştir.
+
+PCB Yerleşimi
+
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <strong>Üst Katman (Top Layer)</strong><br/>
+      <img src="https://github.com/user-attachments/assets/d5433e8e-2538-40c4-8412-6a4c6e5e6e8c" alt="MPI PCB üst katman yerleşimi" width="100%"/>
+    </td>
+    <td align="center" width="50%">
+      <strong>Alt Katman (Bottom Layer)</strong><br/>
+      <img src="https://github.com/user-attachments/assets/a0e4d9a6-5cd6-4a28-980d-a0b8eef832a3" alt="MPI PCB alt katman yerleşimi" width="100%"/>
+    </td>
+  </tr>
+</table>
+
+3D PCB Modeli
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/688c323e-c201-444d-af2e-180ad89e1214" alt="MPI PCB üç boyutlu tasarım modeli" width="100%"/>
+</p>
+
+Gerçek Donanım
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/1997f581-32af-422f-b33d-931ccba52fec" alt="MPI üretilmiş PCB ve gerçek donanım" width="80%"/>
+</p>
 
 
-<img width="4847" height="3275" alt="PCB" src="https://github.com/user-attachments/assets/688c323e-c201-444d-af2e-180ad89e1214" />
-
-<img width="1623" height="1492" alt="2" src="https://github.com/user-attachments/assets/1997f581-32af-422f-b33d-931ccba52fec" />
-
-<img width="2048" height="1873" alt="1" src="https://github.com/user-attachments/assets/64d9eb1a-c9b9-4c19-b673-59a5a778bdb1" />
 
 
