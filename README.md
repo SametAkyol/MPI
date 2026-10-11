@@ -93,6 +93,14 @@ Mevcut donanım platformu, firmware geliştirme, sistem entegrasyonu ve uygulama
 
 3. PCB Tasarımı
 
+
+PCB Yığını 
+
+Kart 4 katmandan oluşup yığını SIG+PWR/GND/GND/SIG+PWR olacak şekilde tasarlanmıştır. Kullanılan konfigürasyon aşağıda verilmiştir.
+
+<img width="723" height="250" alt="Stackup" src="https://github.com/user-attachments/assets/d37de3f2-e5bc-418b-8b68-0fac166a13bc" />
+
+
 MPI kartının PCB tasarımı, üst ve alt katman yerleşimleri ile üç boyutlu kart modeli aşağıda gösterilmiştir.
 
 PCB Yerleşimi
