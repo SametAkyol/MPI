@@ -96,7 +96,7 @@ Mevcut donanım platformu, firmware geliştirme, sistem entegrasyonu ve uygulama
 
 PCB Yığını 
 
-Kart 4 katmandan oluşup yığını SIG+PWR/GND/GND/SIG+PWR olacak şekilde tasarlanmıştır. Kullanılan konfigürasyon aşağıda verilmiştir.
+Kart 1.6mm ve 4 katmandan oluşup yığını SIG+PWR/GND/GND/SIG+PWR olacak şekilde tasarlanmıştır. Kullanılan konfigürasyon aşağıda verilmiştir.
 
 <img width="723" height="250" alt="Stackup" src="https://github.com/user-attachments/assets/d37de3f2-e5bc-418b-8b68-0fac166a13bc" />
 
