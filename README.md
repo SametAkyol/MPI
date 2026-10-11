@@ -1,135 +1,148 @@
 # MPI — Multi-Protocol Interface
 
-**MPI (Multi-Protocol Interface)**, kablolu ve kablosuz haberleşme teknolojilerini tek bir donanım platformunda bir araya getirmek amacıyla tasarlanmış çok arayüzlü bir gömülü haberleşme kartıdır.
+MPI (Multi-Protocol Interface), kablolu ve kablosuz haberleşme arayüzlerini tek bir donanım platformunda bir araya getiren, gömülü sistemler ve endüstriyel uygulamalar için geliştirilmiş bir haberleşme kartıdır.
 
-Kart; STM32F407VET6 mikrodenetleyicisi, DP83825 Ethernet PHY ve CC1101 RF alıcı-vericisi ile CC1190 RF ön ucunu bir araya getirerek gömülü sistemler ve endüstriyel uygulamalar için esnek bir haberleşme altyapısı sunar.
+STM32F407VET6 mikrodenetleyicisi, DP83825 Ethernet PHY ve CC1101 + CC1190 RF alt sistemi üzerine kurulan MPI; Ethernet, RF, CAN, RS485 ve USB arayüzlerini tek bir PCB üzerinde birleştirir.
+
+Donanım tasarımı, PCB üretimi ve doğrulama çalışmaları tamamlanmıştır.
 
 ## 1. Donanım Özeti
 
-MPI kartında kullanılan temel bileşenler:
+MPI'nin temel donanım bileşenleri ve işlevleri aşağıda verilmiştir.
 
-- **STM32F407VET6:** Sistem kontrolü, veri işleme ve haberleşme arayüzlerinin yönetiminden sorumlu ana mikrodenetleyici.
-- **DP83825:** Kablolu ağ bağlantısını sağlayan Ethernet fiziksel katman entegresi (PHY).
-- **CC1101:** Kablosuz veri iletişimi için kullanılan Sub-GHz RF alıcı-vericisi.
-- **CC1190:** CC1101 tabanlı RF sistemi için verici gücünü ve alıcı hassasiyetini artırmaya yönelik RF ön uç entegresi.
+| Bileşen | İşlev |
+|---|---|
+| STM32F407VET6 | Ana mikrodenetleyici; sistem kontrolü ve veri işleme |
+| DP83825 | Ethernet fiziksel katman (PHY) arayüzü |
+| CC1101 | Sub-GHz RF alıcı-vericisi |
+| CC1190 | RF verici gücünü ve alıcı performansını artırmaya yönelik RF ön uç |
 
-Donanım tasarımı tamamlanmış ve doğrulanmıştır.
+Bu bileşenler, farklı haberleşme arayüzlerinin merkezi bir mikrodenetleyici üzerinden yönetilmesini sağlayan donanım altyapısını oluşturur.
 
 ## 2. Haberleşme Arayüzleri
 
-| Arayüz | İşlev |
-|---|---|
-| RF | CC1101 ve CC1190 üzerinden kablosuz haberleşme |
-| Ethernet | DP83825 üzerinden kablolu ağ bağlantısı |
-| CAN | CAN veri yolu üzerinden haberleşme |
-| RS485 | Diferansiyel seri haberleşme |
-| USB | Bilgisayar bağlantısı, yapılandırma ve geliştirme |
+MPI, farklı haberleşme ihtiyaçlarını tek kart üzerinden karşılamak üzere beş temel arayüz sunar.
 
-Arayüzlerin çalışma modları ve desteklenen haberleşme parametreleri, ilgili donanımın özelliklerine ve firmware yapılandırmasına bağlıdır.
+| Arayüz | Açıklama |
+|---|---|
+| **RF** | CC1101 ve CC1190 üzerinden kablosuz veri iletişimi |
+| **Ethernet** | DP83825 üzerinden kablolu ağ bağlantısı |
+| **CAN** | CAN veri yolu üzerinden haberleşme |
+| **RS485** | Diferansiyel seri haberleşme |
+| **USB** | Bilgisayar bağlantısı ve desteklenen USB işlevleri |
+
+Arayüzlerin çalışma modları, veri hızları ve desteklenen protokoller ilgili donanım yapılandırmasına ve firmware uygulamasına bağlıdır.
 
 ## 3. Donanım Mimarisi
 
 ### 3.1. Ana Kontrol Birimi
 
-STM32F407VET6, kartın merkezi işlem birimidir. Haberleşme çevre birimlerini yönetir, veri işleme görevlerini yürütür ve gömülü uygulamalar için gerekli işlem gücünü sağlar.
+STM32F407VET6, MPI kartının merkezi işlem birimidir. Haberleşme çevre birimlerini yönetir, verileri işler ve farklı arayüzler arasındaki iletişim için gerekli kontrol işlevlerini yürütür.
 
 ### 3.2. Ethernet Alt Sistemi
 
-DP83825 Ethernet PHY, mikrodenetleyici ile Ethernet ağı arasındaki fiziksel katman bağlantısını sağlar.
-
-Bu alt sistem sayesinde MPI, harici sistemler ve ağ destekli cihazlarla kablolu haberleşme kurabilir.
+DP83825 Ethernet PHY, mikrodenetleyici ile Ethernet fiziksel bağlantısı arasındaki katmanı sağlar. Bu alt sistem, kartın Ethernet ağı üzerinden harici cihazlarla iletişim kurmasına olanak tanır.
 
 ### 3.3. RF Alt Sistemi
 
 Kablosuz haberleşme alt sistemi, CC1101 RF alıcı-vericisi ve CC1190 RF ön ucundan oluşur.
 
-- **CC1101:** Desteklenen Sub-GHz frekans bantlarında RF sinyallerinin gönderilmesi ve alınmasını sağlar.
-- **CC1190:** RF verici çıkışının güçlendirilmesini ve alıcı tarafındaki RF performansının iyileştirilmesini sağlar.
+- **CC1101:** Desteklenen Sub-GHz frekans bantlarında RF sinyallerinin gönderilmesini ve alınmasını sağlar.
+- **CC1190:** RF verici çıkış gücünü artırır ve alıcı tarafındaki RF performansını iyileştirmeye yönelik işlevler sunar.
 
-RF alt sistemi, uyumlu cihazlar arasında kablosuz veri aktarımı için tasarlanmıştır. Çalışma frekansı, modülasyon türü, veri hızı, çıkış gücü ve alıcı performansı kullanılan RF yapılandırmasına bağlıdır.
+RF çalışma frekansı, modülasyon, veri hızı ve RF performansı kullanılan yapılandırmaya bağlıdır.
 
 ### 3.4. CAN Arayüzü
 
-CAN arayüzü, gömülü kontrol sistemleri ve dağıtık kontrol uygulamaları için CAN veri yolu haberleşmesi sağlar.
+CAN arayüzü, CAN veri yolu kullanan gömülü kontrol sistemleri ve dağıtık elektronik sistemlerle haberleşmek üzere tasarlanmıştır.
 
 ### 3.5. RS485 Arayüzü
 
-RS485 arayüzü, endüstriyel otomasyon ve gömülü kontrol sistemlerinde yaygın olarak kullanılan diferansiyel seri haberleşmeyi destekler.
+RS485 arayüzü, diferansiyel seri haberleşme altyapısı üzerinden endüstriyel cihazlar ve gömülü sistemlerle iletişim kurulmasını sağlar.
 
 ### 3.6. USB Arayüzü
 
-USB arayüzü, kartın bir bilgisayara veya uyumlu USB cihazına bağlanmasını sağlar. Sunulan işlevler firmware uygulamasına bağlıdır.
+USB arayüzü, kartın uyumlu bir bilgisayara veya USB cihazına bağlanmasını sağlar. Desteklenen çalışma modu ve işlevler firmware uygulamasına bağlıdır.
 
-## 4. Tasarım ve Doğrulama
+## 4. PCB Tasarımı
+
+MPI kartı, **1,6 mm kalınlığında ve dört katmanlı bir PCB** olarak tasarlanmıştır. Katman yapısı, sinyal yönlendirmesi ve güç dağıtımı için uygun bir yerleşim altyapısı oluşturacak şekilde düzenlenmiştir.
+
+### 4.1. PCB Katman Yapısı
+
+Katman dizilimi aşağıdaki şekildedir:
+
+| Katman | Kullanım |
+|---|---|
+| L1 | Sinyal + güç |
+| L2 | GND |
+| L3 | GND |
+| L4 | Sinyal + güç |
+
+İç katmanların GND düzlemleri olarak kullanılması, sinyal dönüş yollarının oluşturulmasına ve güç bütünlüğünün desteklenmesine yardımcı olur.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/d37de3f2-e5bc-418b-8b68-0fac166a13bc" alt="MPI dört katmanlı PCB katman dizilimi" width="85%"/>
+</p>
+
+### 4.2. PCB Yerleşimi
+
+Kartın üst ve alt katman yerleşimleri aşağıda gösterilmiştir.
+
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <strong>Üst Katman — Top Layer</strong><br/>
+      <img src="https://github.com/user-attachments/assets/d5433e8e-2538-40c4-8412-6a4c6e5e6e8c" alt="MPI PCB üst katman yerleşimi" width="100%"/>
+    </td>
+    <td align="center" width="50%">
+      <strong>Alt Katman — Bottom Layer</strong><br/>
+      <img src="https://github.com/user-attachments/assets/a0e4d9a6-5cd6-4a28-980d-a0b8eef832a3" alt="MPI PCB alt katman yerleşimi" width="100%"/>
+    </td>
+  </tr>
+</table>
+
+### 4.3. Üç Boyutlu PCB Modeli
+
+PCB'nin üç boyutlu modeli, bileşen yerleşimini ve kartın fiziksel düzenini göstermektedir.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/688c323e-c201-444d-af2e-180ad89e1214" alt="MPI PCB üç boyutlu tasarım modeli" width="100%"/>
+</p>
+
+### 4.4. Üretilmiş Donanım
+
+Tasarımın fiziksel karşılığı olan üretilmiş MPI kartı aşağıda gösterilmiştir.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/1997f581-32af-422f-b33d-931ccba52fec" alt="Üretilmiş MPI haberleşme kartı" width="80%"/>
+</p>
+
+## 5. Tasarım ve Doğrulama
 
 MPI donanımının tasarımı ve doğrulama çalışmaları tamamlanmıştır.
 
-Birden fazla haberleşme arayüzünün aynı PCB üzerinde birleştirilmesiyle harici haberleşme adaptörlerine duyulan ihtiyacın uygun uygulamalarda azaltılması amaçlanmıştır.
+Kart; birden fazla kablolu ve kablosuz haberleşme arayüzünü aynı PCB üzerinde birleştiren bütünleşik bir donanım platformu olarak geliştirilmiştir.
 
-Ölçülmüş performans değerleri; test koşulları ve doğrulama sonuçlarıyla birlikte teknik dokümantasyonda belirtilmelidir.
+Ölçülmüş performans değerleri, test koşulları ve arayüz bazındaki doğrulama sonuçları ilgili teknik dokümantasyon kapsamında sunulabilir.
 
-## 5. Kullanım Alanları
+## 6. Kullanım Alanları
 
-MPI aşağıdaki uygulamalarda kullanılabilecek şekilde tasarlanmıştır:
+MPI aşağıdaki uygulamalarda değerlendirilebilir:
 
 - Gömülü haberleşme ağ geçitleri
 - Endüstriyel haberleşme ve kontrol sistemleri
 - Kablosuz telemetri
 - Ağ bağlantılı gömülü cihazlar
-- Donanım geliştirme ve haberleşme testleri
-- Kablolu ve kablosuz haberleşme arayüzlerinin entegrasyonu
+- Haberleşme arayüzlerinin entegrasyonu ve test edilmesi
+- Kablolu ve kablosuz sistemler arasında veri aktarımı
 
-## 6. Proje Durumu
+## 7. Proje Durumu
 
-MPI donanım tasarımı ve doğrulama çalışmaları tamamlanmıştır.
-
-Mevcut donanım platformu, firmware geliştirme, sistem entegrasyonu ve uygulamaya özel yapılandırma çalışmaları için hazırdır.
+MPI'nin donanım tasarımı, PCB üretimi ve doğrulama çalışmaları tamamlanmıştır. Mevcut donanım platformu, firmware geliştirme ve uygulamaya özel entegrasyon çalışmaları için kullanılabilir.
 
 ---
 
 **MPI — Multi-Protocol Interface**
 
 *Tek kart. Çoklu haberleşme arayüzü.*
-
-3. PCB Tasarımı
-
-
-PCB Yığını 
-
-Kart 1.6mm ve 4 katmandan oluşup yığını SIG+PWR/GND/GND/SIG+PWR olacak şekilde tasarlanmıştır. Kullanılan konfigürasyon aşağıda verilmiştir.
-
-<img width="723" height="250" alt="Stackup" src="https://github.com/user-attachments/assets/d37de3f2-e5bc-418b-8b68-0fac166a13bc" />
-
-
-MPI kartının PCB tasarımı, üst ve alt katman yerleşimleri ile üç boyutlu kart modeli aşağıda gösterilmiştir.
-
-PCB Yerleşimi
-
-<table>
-  <tr>
-    <td align="center" width="50%">
-      <strong>Üst Katman (Top Layer)</strong><br/>
-      <img src="https://github.com/user-attachments/assets/d5433e8e-2538-40c4-8412-6a4c6e5e6e8c" alt="MPI PCB üst katman yerleşimi" width="100%"/>
-    </td>
-    <td align="center" width="50%">
-      <strong>Alt Katman (Bottom Layer)</strong><br/>
-      <img src="https://github.com/user-attachments/assets/a0e4d9a6-5cd6-4a28-980d-a0b8eef832a3" alt="MPI PCB alt katman yerleşimi" width="100%"/>
-    </td>
-  </tr>
-</table>
-
-3D PCB Modeli
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/688c323e-c201-444d-af2e-180ad89e1214" alt="MPI PCB üç boyutlu tasarım modeli" width="100%"/>
-</p>
-
-Gerçek Donanım
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/1997f581-32af-422f-b33d-931ccba52fec" alt="MPI üretilmiş PCB ve gerçek donanım" width="80%"/>
-</p>
-
-
-
-
