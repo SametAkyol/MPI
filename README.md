@@ -41,15 +41,6 @@ MPI kartı, **1,6 mm kalınlığında ve dört katmanlı bir PCB** olarak tasarl
 
 Katman dizilimi aşağıdaki şekildedir:
 
-| Katman | Kullanım |
-|---|---|
-| L1 | Sinyal + güç |
-| L2 | GND |
-| L3 | GND |
-| L4 | Sinyal + güç |
-
-İç katmanların GND düzlemleri olarak kullanılması, sinyal dönüş yollarının oluşturulmasına ve güç bütünlüğünün desteklenmesine yardımcı olur.
-
 <p align="center">
   <img src="https://github.com/user-attachments/assets/d37de3f2-e5bc-418b-8b68-0fac166a13bc" alt="MPI dört katmanlı PCB katman dizilimi" width="85%"/>
 </p>
