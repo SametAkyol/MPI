@@ -95,3 +95,8 @@ Mevcut donanım platformu, firmware geliştirme, sistem entegrasyonu ve uygulama
 
 <img width="4847" height="3275" alt="PCB" src="https://github.com/user-attachments/assets/688c323e-c201-444d-af2e-180ad89e1214" />
 
+<img width="1623" height="1492" alt="2" src="https://github.com/user-attachments/assets/1997f581-32af-422f-b33d-931ccba52fec" />
+
+<img width="2048" height="1873" alt="1" src="https://github.com/user-attachments/assets/64d9eb1a-c9b9-4c19-b673-59a5a778bdb1" />
+
+
